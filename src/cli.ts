@@ -1,6 +1,26 @@
-import yargs, { Argv } from 'yargs';
+import yargs, { Argv, choices } from 'yargs';
 
 import packageJSON from '../package.json';
+
+export type CopyArgsv = LocalArgsType | Promise<LocalArgsType>;
+
+export interface LocalArgsType {
+    [x: string]: unknown;
+    hash: string;
+    encrypt: unknown;
+    decrypt: unknown;
+    file: string;
+    key: unknown;
+    createKey: unknown;
+    h: string;
+    e: unknown;
+    d: unknown;
+    f: string;
+    k: unknown;
+    c: unknown;
+    _: (string | number)[];
+    $0: string;
+}
 
 /**
  * NOTES: CLI COMMANDS
@@ -13,22 +33,35 @@ import packageJSON from '../package.json';
  * -k key
  * 
  */
-export const initCLI = () => {
+export const initCLI = (): CopyArgsv => {
     return yargs.version(packageJSON.version).options({
         hash: {
-            alias: 'h'
+            alias: 'h',
+            type: 'string',
+            choices: ['SHA256', 'SHA512'],
         },
         encrypt: {
-            alias: 'e'
+            alias: 'e',
+            type: 'string',
         },
         decrypt: {
-            alias: 'd'
+            alias: 'd',
+            type: 'string',
         },
         file: {
-            alias: 'f'
+            alias: 'f',
+            type: 'string',
+            demandOption: true,
         },
         key: {
-            alias: 'k'
+            alias: 'k',
+            type: 'string',
+            demandOption: false,
+        },
+        createKey: {
+            alias: 'c',
+            type: 'string',
+            demandOption: false,
         }
-    }).argv
+    }).argv as CopyArgsv
 }
