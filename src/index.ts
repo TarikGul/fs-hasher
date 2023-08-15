@@ -1,9 +1,10 @@
 import { initCLI } from './cli';
+import { initSelector } from './selector';
 
 const main = async () => {
-    const args = initCLI();
+    const args = await initCLI();
 
-    console.log(args)
+    await initSelector(args);
 }
 
 main();
