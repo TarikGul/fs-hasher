@@ -35,11 +35,11 @@ export const initSelector = async (args: LocalArgsType) => {
 			console.log(`${f}: ${s}`);
 		}
 		if (h === 'SHA3-384') {
-			const s = await sha3.sha3DigestStream(buff, 'sha-384', 'base64');
+			const s = await sha3.sha3DigestStream(buff, 'sha3-384', 'base64');
 			console.log(`${f}: ${s}`);
 		}
 		if (h === 'SHA3-512') {
-			const s = await sha3.sha3DigestStream(buff, 'sha-512', 'base64');
+			const s = await sha3.sha3DigestStream(buff, 'sha3-512', 'base64');
 			console.log(`${f}: ${s}`);
 		}
 	}
