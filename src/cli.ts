@@ -51,6 +51,8 @@ export const initCLI = (): CopyArgsv => {
 				'SHA3-512',
 				'SHAKE128',
 				'SHAKE256',
+				'BLAKE2b512',
+				'BLAKE2s256',
 			],
 		},
 		encrypt: {

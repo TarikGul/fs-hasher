@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 import type { LocalArgsType } from './cli';
-import { sha2, sha3, shake } from './hashing';
+import { blake2, sha2, sha3, shake } from './hashing';
 
 export const initSelector = async (args: LocalArgsType) => {
 	// const k = args.k || args.key;
@@ -53,6 +53,14 @@ export const initSelector = async (args: LocalArgsType) => {
 			const s = await shake.shakeDigestStream(buff, 'shake256', 'base64', {
 				outputLength: l,
 			});
+			console.log(`${f}: ${s}`);
+		}
+		if (h === 'BLAKE2b512') {
+			const s = await blake2.blake2DigestStream(buff, 'blake2b512', 'base64');
+			console.log(`${f}: ${s}`);
+		}
+		if (h === 'BLAKE2s256') {
+			const s = await blake2.blake2DigestStream(buff, 'blake2s256', 'base64');
 			console.log(`${f}: ${s}`);
 		}
 	}
