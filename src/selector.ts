@@ -1,12 +1,13 @@
 import fs from 'fs';
 
 import type { LocalArgsType } from './cli';
-import { sha2, sha3 } from './hashing';
+import { sha2, sha3, shake } from './hashing';
 
 export const initSelector = async (args: LocalArgsType) => {
 	// const k = args.k || args.key;
 	const f = args.f || args.file;
 	const h = args.h || args.hash;
+	const l = args.len || args.length;
 	const buff = fs.createReadStream(f);
 
 	if (h) {
@@ -40,6 +41,18 @@ export const initSelector = async (args: LocalArgsType) => {
 		}
 		if (h === 'SHA3-512') {
 			const s = await sha3.sha3DigestStream(buff, 'sha3-512', 'base64');
+			console.log(`${f}: ${s}`);
+		}
+		if (h === 'SHAKE128') {
+			const s = await shake.shakeDigestStream(buff, 'shake128', 'base64', {
+				outputLength: l,
+			});
+			console.log(`${f}: ${s}`);
+		}
+		if (h === 'SHAKE256') {
+			const s = await shake.shakeDigestStream(buff, 'shake256', 'base64', {
+				outputLength: l,
+			});
 			console.log(`${f}: ${s}`);
 		}
 	}

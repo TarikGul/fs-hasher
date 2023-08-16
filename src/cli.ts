@@ -12,12 +12,14 @@ export interface LocalArgsType {
 	file: string;
 	key: unknown;
 	createKey: unknown;
+	length: number;
 	h: string;
 	e: unknown;
 	d: unknown;
 	f: string;
 	k: unknown;
 	c: unknown;
+	len: number;
 	_: (string | number)[];
 	$0: string;
 }
@@ -70,6 +72,11 @@ export const initCLI = (): CopyArgsv => {
 		createKey: {
 			alias: 'c',
 			type: 'string',
+			demandOption: false,
+		},
+		length: {
+			alias: 'len',
+			type: 'number',
 			demandOption: false,
 		},
 	}).argv as CopyArgsv;
