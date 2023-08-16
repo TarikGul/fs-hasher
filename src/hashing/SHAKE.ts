@@ -1,9 +1,6 @@
-import crypto from 'crypto';
 import type fs from 'fs';
 
-export interface ShakeOptions {
-	outputLength: number;
-}
+import { baseDigestStream, ShakeOptions } from './util';
 
 export const shakeDigestStream = (
 	buff: fs.ReadStream,
@@ -11,14 +8,5 @@ export const shakeDigestStream = (
 	encoding: 'base64' | 'hex',
 	options: ShakeOptions
 ): Promise<unknown> => {
-	return new Promise((resolve, reject) => {
-		const hash = crypto.createHash(format, options);
-		buff.on('error', (err) => {
-			reject(err);
-		});
-		buff.on('end', () => {
-			resolve(hash.digest(encoding));
-		});
-		buff.pipe(hash);
-	});
+	return baseDigestStream(buff, format, encoding, options);
 };
