@@ -19,7 +19,7 @@ export interface LocalArgsType {
 	f: string;
 	k: unknown;
 	c: unknown;
-	len: number;
+	l: number;
 	_: (string | number)[];
 	$0: string;
 }
@@ -49,6 +49,8 @@ export const initCLI = (): CopyArgsv => {
 				'SHA3-256',
 				'SHA3-384',
 				'SHA3-512',
+				'SHAKE128',
+				'SHAKE256',
 			],
 		},
 		encrypt: {
@@ -75,7 +77,7 @@ export const initCLI = (): CopyArgsv => {
 			demandOption: false,
 		},
 		length: {
-			alias: 'len',
+			alias: 'l',
 			type: 'number',
 			demandOption: false,
 		},

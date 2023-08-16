@@ -7,7 +7,7 @@ export const initSelector = async (args: LocalArgsType) => {
 	// const k = args.k || args.key;
 	const f = args.f || args.file;
 	const h = args.h || args.hash;
-	const l = args.len || args.length;
+	const l = args.l || args.length;
 	const buff = fs.createReadStream(f);
 
 	if (h) {
