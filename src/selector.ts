@@ -4,7 +4,6 @@ import type { LocalArgsType } from './cli';
 import { blake2, sha2, sha3, shake } from './hashing';
 
 export const initSelector = async (args: LocalArgsType) => {
-	// const k = args.k || args.key;
 	const f = args.f || args.file;
 	const h = args.h || args.hash;
 	const l = args.l || args.length;
@@ -63,13 +62,5 @@ export const initSelector = async (args: LocalArgsType) => {
 			const s = await blake2.blake2DigestStream(buff, 'blake2s256', 'base64');
 			console.log(`${f}: ${s}`);
 		}
-	}
-
-	if (args.e || args.encrypt) {
-		// Call encrypt
-	}
-
-	if (args.d || args.decrypt) {
-		// Call decrypt
 	}
 };
